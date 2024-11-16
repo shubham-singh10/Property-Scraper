@@ -3,10 +3,9 @@ import puppeteer from 'puppeteer';
 import { Pool } from 'pg';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-console.log("Pool: ", pool)
 export async function POST(req: Request) {
     const { url } = await req.json();
-    console.log("Url: ", url);
+    // console.log("Url: ", url);
     if (!url) {
         return NextResponse.json({ error: 'URL is required' }, { status: 400 });
     }
@@ -17,7 +16,7 @@ export async function POST(req: Request) {
     try {
         const insertQuery = `INSERT INTO property_listings (url, status) VALUES ($1, 'In Progress') RETURNING id;`;
         const { rows } = await client.query(insertQuery, [url]);
-        console.log('Rows: ', rows);
+        // console.log('Rows: ', rows);
         listingId = rows[0].id;
         if (!listingId) throw new Error('Listing ID is undefined.');
 
