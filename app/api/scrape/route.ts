@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     if (!url) {
         return NextResponse.json({ error: 'URL is required' }, { status: 400 });
     }
-
     const client = await pool.connect();
     let listingId: number | undefined;
 
