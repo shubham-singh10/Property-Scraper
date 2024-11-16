@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import { Pool } from 'pg';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-
+console.log("Pool: ", pool)
 export async function POST(req: Request) {
     const { url } = await req.json();
     console.log("Url: ", url);
